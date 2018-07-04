@@ -5,10 +5,13 @@ class Recipe < ActiveRecord::Base
   fields do
     title   :string
     body    :text
-    country :string
     timestamps
   end
-  attr_accessible :title, :body, :country
+  attr_accessible :title, :body, :country_id, :country
+
+  belongs_to :country
+
+  validates_presence_of :country
 
   # --- Permissions --- #
 

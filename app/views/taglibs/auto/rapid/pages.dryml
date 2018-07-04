@@ -6,9 +6,121 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Country"><ht key="country.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Recipe"><ht key="recipe.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Country Pages ====== -->
+
+<def tag="index-page" for="Country">
+  <page merge title="#{ht 'country.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page country" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="country.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="country.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="country.actions.new">New Country</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Country">
+  <page merge title="#{ht 'country.new.title', :default=>[' New Country'] }">
+    <body: class="new-page country" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="country.new.heading">
+          New Country
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'country.actions.create', :default=>['Create Country']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Country">
+  <page merge title="#{ht 'country.show.title', :default=>['Country'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page country" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="country.show.heading" name="#{name(:no_wrapper => true)}">
+          Country <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="country.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Country
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Country">
+  <page merge title="#{ht 'country.edit.title', :default=>['Edit Country'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page country" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="country.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Country
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'country.actions.delete', :default=>['Remove This Country']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 

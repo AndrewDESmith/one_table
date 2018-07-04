@@ -2,8 +2,8 @@
 # e.g.
 
 en:
-  recipe:
-    nav_item: "My Recipes"
+  # recipe:
+  #   nav_item: "My Recipes"
 
 #  attributes:
 #    created_at: Created at

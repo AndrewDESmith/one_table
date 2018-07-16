@@ -1,3 +1,17 @@
+<def tag="bd-it">
+  <br/>
+  <b><i><span param="default">stuff</span></i></b>
+</def>
+
+<def tag="messages">
+  <br/><br/>
+  <ul>
+    <li param="msg1">Message 1</li>
+    <li param="msg2">Message 2</li>
+    <li param="msg3">Message 3</li>
+  </ul>
+</def>
+
 <page title="Home">
 
   <body: class="front-page"/>
@@ -7,6 +21,13 @@
       <h1>Welcome to <app-name/></h1>
       <section class="welcome-message">
         <h3>Congratulations! Your Hobo Rails App is up and running</h3>
+        <messages>
+          <msg2:>This is the second message called as a parameter.</msg2>
+          <msg1:>This is the first message called as a parameter.</msg1>
+          <msg3:>This is the third message passed as a parameter.</msg3>
+        </messages>
+        <bd-it/>
+        <bd-it>More stuff</bd-it>
         <ul>
           <li>To customise this page: edit app/views/front/index.dryml</li>
         </ul>

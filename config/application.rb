@@ -27,6 +27,6 @@ module OneTable
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.hobo.app_name = "Four Table"
+    config.hobo.app_name = "Four Tables, No Waiting"
   end
 end

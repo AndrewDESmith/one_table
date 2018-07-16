@@ -5,6 +5,10 @@
 OneTable::Application.routes.draw do
 
 
+  # Resource routes for controller categories
+  resources :categories
+
+
   # Resource routes for controller countries
   resources :countries
 

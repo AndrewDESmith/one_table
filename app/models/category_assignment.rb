@@ -1,17 +1,14 @@
-class Country < ActiveRecord::Base
+class CategoryAssignment < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    name :string
     timestamps
   end
-  attr_accessible :name
+  attr_accessible
 
-  has_many :recipes
-
-  # Tell Hobo to display related information (for this model) on the country show page:
-  children :recipes
+  belongs_to :category
+  belongs_to :recipe
 
   # --- Permissions --- #
 

@@ -6,10 +6,132 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Country"><ht key="country.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Recipe"><ht key="recipe.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Category Pages ====== -->
+
+<def tag="index-page" for="Category">
+  <page merge title="#{ht 'category.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="category.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="category.actions.new">New Category</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Category">
+  <page merge title="#{ht 'category.new.title', :default=>[' New Category'] }">
+    <body: class="new-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.new.heading">
+          New Category
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'category.actions.create', :default=>['Create Category']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Category">
+  <page merge title="#{ht 'category.show.title', :default=>['Category'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page category" param/>
+
+    <content-header: param>
+      <a:recipes param="parent-link">&laquo; <ht key="category.actions.back_to_parent" parent="Recipe" name="&this">Back to <name/></ht></a:recipes>
+      <h2 param="heading">
+        <ht key="category.show.heading" name="#{name(:no_wrapper => true)}">
+          Category <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="category.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Category
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="recipe.collection.heading" count="&this.recipes.count" >
+            <human-collection-name collection="recipes" your/>
+          </ht>
+        </h3>
+
+        <collection:recipes param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Category">
+  <page merge title="#{ht 'category.edit.title', :default=>['Edit Category'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Category
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'category.actions.delete', :default=>['Remove This Category']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 
@@ -94,6 +216,15 @@
     </content-header:>
 
     <content-body: param>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="recipe.collection.heading" count="&this.recipes.count" >
+            <human-collection-name collection="recipes" your/>
+          </ht>
+        </h3>
+
+        <collection:recipes param/>
+      </section>
     </content-body:>
 
   </page>
@@ -189,6 +320,7 @@
     <body: class="show-page recipe" param/>
 
     <content-header: param>
+      <a:categories param="parent-link">&laquo; <ht key="recipe.actions.back_to_parent" parent="Category" name="&this">Back to <name/></ht></a:categories>
       <h2 param="heading">
         <ht key="recipe.show.heading" name="#{name(:no_wrapper => true)}">
           Recipe <name/>
@@ -207,6 +339,15 @@
     <content-body: param>
       <view:body param="description" />
       <field-list fields="country" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="category.collection.heading" count="&this.categories.count" >
+            <human-collection-name collection="categories" your/>
+          </ht>
+        </h3>
+
+        <collection:categories param/>
+      </section>
     </content-body:>
 
   </page>

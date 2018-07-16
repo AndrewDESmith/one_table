@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180704042539) do
+ActiveRecord::Schema.define(version: 20180711032854) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_assignments", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category_id"
+    t.integer  "recipe_id"
+  end
+
+  add_index "category_assignments", ["category_id"], name: "index_category_assignments_on_category_id"
+  add_index "category_assignments", ["recipe_id"], name: "index_category_assignments_on_recipe_id"
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"

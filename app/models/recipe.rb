@@ -7,9 +7,14 @@ class Recipe < ActiveRecord::Base
     body    :text
     timestamps
   end
-  attr_accessible :title, :body, :country_id, :country
+  attr_accessible :title, :body, :country_id, :country, :categories, :category_ids
 
   belongs_to :country
+  has_many :categories, through: :category_assignments, accessible: true
+  has_many :category_assignments, dependent: :destroy
+
+  # Tell Hobo to display related information (for this model) on the recipe show page:
+  children :categories
 
   validates_presence_of :country
 

@@ -1,4 +1,4 @@
-class Country < ActiveRecord::Base
+class Category < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
@@ -6,11 +6,12 @@ class Country < ActiveRecord::Base
     name :string
     timestamps
   end
-  attr_accessible :name
+  attr_accessible :name, :recipes, :recipe_ids
 
-  has_many :recipes
+  has_many :recipes, through: :category_assignments
+  has_many :category_assignments, dependent: :destroy
 
-  # Tell Hobo to display related information (for this model) on the country show page:
+  # Tell Hobo to display related information (for this model) on the category show page:
   children :recipes
 
   # --- Permissions --- #

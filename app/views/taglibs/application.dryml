@@ -41,3 +41,18 @@ you can place common code in this file. -->
     <nav-item with="&Country"><ht key="country.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+<def tag="messagex">
+  <br/><br/>
+  <ul>
+    <li param="msg1">Message 1</li>
+    <li param="msg2">Message 2</li>
+    <li param="msg3">Message 3</li>
+  </ul>
+</def>
+
+<extend tag="messagex">
+  <old-messagex merge>
+    <msg2: param>Message 2 Extended</msg2:>
+  </old-messagex>
+</extend>

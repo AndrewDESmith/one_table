@@ -12,6 +12,15 @@
   </ul>
 </def>
 
+<def tag="more-messages">
+  <li param="msg0">Message 0</li>
+  <messages merge>
+    <msg2: param>Message 2 changed in merge</msg2:>
+  </messages>
+  <li param="msg4">Message 4</li>
+  <li>No parameter Here</li>
+</def>
+
 <page title="Home">
 
   <body: class="front-page"/>
@@ -26,6 +35,17 @@
           <msg1:>This is the first message called as a parameter.</msg1>
           <msg3:>This is the third message passed as a parameter.</msg3>
         </messages>
+
+
+        <more-messages>
+          <msg0:>Message 0 changed with parameter tag.</msg0:>
+          <msg4:>Message 4 has changed with parameter tag too.</msg4:>
+        </more-messages>
+
+        <!--
+        <messagex/>
+        -->
+
         <bd-it/>
         <bd-it>More stuff</bd-it>
         <ul>

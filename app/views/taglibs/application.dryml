@@ -1,38 +1,6 @@
 <!-- this file is included by front_site.dryml, admin_site.dryml et al, so
 you can place common code in this file. -->
 
-<def tag="index-page" for="Recipe">
-  <page merge title="#{ht 'recipe.index.title', :default=>[model.model_name.human(:count=>100)] }">
-    <body: class="index-page recipe" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        My recipe
-      </h2>
-
-      <p param="count" if>
-        <ht key="recipe.collection.count" count="&collection_count">
-          <count summary/>
-        </ht>
-      </p>
-    </content-header:>
-
-    <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="recipe.actions.new">New Recipe</ht>
-      </a>
-
-      <page-nav param="top-page-nav"/>
-
-      <collection param/>
-
-      <page-nav param="bottom-page-nav"/>
-
-
-    </content-body:>
-  </page>
-</def>
-
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
@@ -56,3 +24,16 @@ you can place common code in this file. -->
     <msg2: param>Message 2 Extended</msg2:>
   </old-messagex>
 </extend>
+
+
+<def tag="card" for="Recipe">
+  <card class="recipe" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <if:categories><view/></if>
+      <else>Three are no assigned categories yet.</else>
+    </body:>
+  </card>
+</def>
